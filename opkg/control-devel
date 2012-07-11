@@ -1,0 +1,11 @@
+Source: ncurses
+Section: base
+Priority: optional
+Maintainer: Dan Drown <dan-android@drown.org>
+Package: ncurses-devel
+Version: 5.9-2
+Architecture: arm
+Depends: linker
+Description: The curses library routines are a terminal-independent method of
+ updating character screens with reasonable optimization.
+
