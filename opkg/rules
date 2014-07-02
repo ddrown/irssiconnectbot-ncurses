@@ -6,7 +6,7 @@ PACKAGE=ncurses
 case "$1" in
   build)
     ./configure --host=arm-linux \
-      CC=agcc LDFLAGS="-Wl,-dynamic-linker,/data/data/org.woltage.irssiconnectbot/files/bin/linker" \
+      CC=agcc CXX=ag++ LDFLAGS="-Wl,-dynamic-linker,/data/data/org.woltage.irssiconnectbot/files/bin/linker" \
       --prefix=/data/data/org.woltage.irssiconnectbot/files \
       --with-shared --with-termlib
     sed -i 's@#define HAVE_LOCALE_H 1@/* #undef HAVE_LOCALE_H */@' include/ncurses_cfg.h
