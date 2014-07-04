@@ -6,8 +6,8 @@ PACKAGE=ncurses
 case "$1" in
   build)
     ./configure --host=arm-linux \
-      CC=agcc CXX=ag++ LDFLAGS="-Wl,-dynamic-linker,/$basedir/bin/linker" \
-      --prefix=/$basedir \
+      CC=agcc CXX=ag++ LDFLAGS="-Wl,-dynamic-linker,/$BASEDIR/bin/linker" \
+      --prefix=/$BASEDIR \
       --with-shared --with-termlib
     sed -i 's@#define HAVE_LOCALE_H 1@/* #undef HAVE_LOCALE_H */@' include/ncurses_cfg.h
     make
@@ -22,14 +22,14 @@ case "$1" in
     # -devel package
     DEVEL_DESTDIR=~/tmp/$PACKAGE-devel
     rm -rf $DEVEL_DESTDIR
-    mkdir -p $DEVEL_DESTDIR/$basedir/lib $DEVEL_DESTDIR/$basedir/bin
-    mv $DESTDIR/$basedir/lib/*.{a,so} $DEVEL_DESTDIR/$basedir/lib
-    mv $DESTDIR/$basedir/include $DEVEL_DESTDIR/$basedir
-    mv $DESTDIR/$basedir/bin/ncurses5-config $DEVEL_DESTDIR/$basedir/bin
-    mv $DESTDIR/$basedir/man $DEVEL_DESTDIR/$basedir/man
+    mkdir -p $DEVEL_DESTDIR/$BASEDIR/lib $DEVEL_DESTDIR/$BASEDIR/bin
+    mv $DESTDIR/$BASEDIR/lib/*.{a,so} $DEVEL_DESTDIR/$BASEDIR/lib
+    mv $DESTDIR/$BASEDIR/include $DEVEL_DESTDIR/$BASEDIR
+    mv $DESTDIR/$BASEDIR/bin/ncurses5-config $DEVEL_DESTDIR/$BASEDIR/bin
+    mv $DESTDIR/$BASEDIR/man $DEVEL_DESTDIR/$BASEDIR/man
     mkdir -p $DEVEL_DESTDIR/CONTROL
     cp opkg/control-devel $DEVEL_DESTDIR/CONTROL/control
-    opkg-build -o 0 -g 0 -b $basedir $DEVEL_DESTDIR `cd .. ; pwd`
+    opkg-build -o 0 -g 0 -b $BASEDIR $DEVEL_DESTDIR `cd .. ; pwd`
     ;;
 
   clean)
